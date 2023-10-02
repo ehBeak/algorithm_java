@@ -1,8 +1,8 @@
-package search;
+package search.string;
 
 import java.util.Scanner;
 
-public class Main {
+public class ChangeUpperLowerCase {
 
   public String solution(String str) {
 
@@ -19,7 +19,7 @@ public class Main {
 
   public static void main(String[] args) {
 
-    Main T = new Main();
+    ChangeUpperLowerCase T = new ChangeUpperLowerCase();
     Scanner in = new Scanner(System.in);
     String input = in.next();
     System.out.println(T.solution(input));
