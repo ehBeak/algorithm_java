@@ -1,8 +1,8 @@
-package search.string;
+package search;
 
 import java.util.Scanner;
 
-public class SearchCharset {
+public class Main {
 
   public int solution(String str, char c) {
 
@@ -22,7 +22,7 @@ public class SearchCharset {
 
   public static void main(String[] args){
 
-    SearchCharset searchCharset = new SearchCharset();
+    Main searchCharset = new Main();
 
     Scanner in = new Scanner(System.in);
     String input1 = in.next(); // 문자열 하나 읽음
