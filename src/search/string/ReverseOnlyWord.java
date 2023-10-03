@@ -1,8 +1,8 @@
-package search;
+package search.string;
 
 import java.util.Scanner;
 
-public class Main {
+public class ReverseOnlyWord {
 
   public static String solution(String str) {
 
@@ -48,4 +48,3 @@ public class Main {
   }
 
 }
-
