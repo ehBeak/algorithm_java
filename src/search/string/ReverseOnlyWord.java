@@ -15,12 +15,12 @@ public class ReverseOnlyWord {
       boolean ltFlag = true;
       boolean rtFlag = true;
       while (ltFlag || rtFlag) {
-        if (!((cArray[lt] > 64 && cArray[lt] < 91) || (cArray[lt] > 96 && cArray[lt] < 122))) {
+        if (!((cArray[lt] > 64 && cArray[lt] < 91) || (cArray[lt] > 96 && cArray[lt] < 123))) {
           lt++;
         }else {
           ltFlag = false;
         }
-        if (!((cArray[rt] > 64 && cArray[rt] < 91) || (cArray[rt] > 96 && cArray[rt] < 122))) {
+        if (!((cArray[rt] > 64 && cArray[rt] < 91) || (cArray[rt] > 96 && cArray[rt] < 123))) {
           rt--;
         }else{
           rtFlag = false;
