@@ -1,8 +1,8 @@
-package search;
+package search.string;
 
 import java.util.Scanner;
 
-public class Main {
+public class PalindromeString {
 
   public static String solution(String str) {
     String upperCaseStr = str.toUpperCase();
