@@ -1,13 +1,14 @@
-package search;
+package search.string;
 
 import java.util.Scanner;
 
-public class Main {
+public class PalindromeStringDevelop {
 
   public static String solution(String str) {
 
     int lt=0;
     int rt = str.length() - 1;
+
     str = str.toUpperCase();
 
     while (lt < rt) {
