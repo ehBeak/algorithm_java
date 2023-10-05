@@ -4,30 +4,41 @@ import java.util.Scanner;
 
 public class Main {
 
-  public static String solution(String str, char t) {
+  public static int[] solution(String str, char t) {
 
-    StringBuilder sb = new StringBuilder();
+    int[] ans = new int[str.length()];
+    int d = Integer.MAX_VALUE - 100;
+
     for (int i = 0; i < str.length(); i++) {
-      int prev = Integer.MAX_VALUE;
-      for (int j = 0; j < str.length(); j++) {
-        char cj = str.charAt(j);
-        if (cj == t) {
-          int tmp = Math.abs(j - i);
-          if (prev > tmp) {
-            prev = tmp;
-          }
-        }
+      if (str.charAt(i) == t) {
+        d = 0;
+      } else {
+        d++;
       }
-      sb.append(prev).append(" ");
+      ans[i] = d;
     }
-    return sb.toString();
+
+    d = Integer.MAX_VALUE - 100;
+    for (int i = str.length() - 1; i >= 0; i--) {
+      if (str.charAt(i) == t) {
+        d = 0;
+      } else {
+        d++;
+      }
+      ans[i] = Math.min(ans[i], d);
+    }
+
+    return ans;
   }
 
   public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
     String str = in.next();
     char t = in.next().charAt(0);
-    System.out.println(solution(str, t));
+    for (int e : solution(str, t)) {
+      System.out.print(e + " ");
+    }
+
   }
 
 }
