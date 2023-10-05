@@ -3,9 +3,15 @@ package search;
 import java.util.Scanner;
 public class Main {
 
-  public static Integer solution(String str) {
-    str = str.replaceAll("[^0-9]", "");
-    return Integer.valueOf(str);
+  public static int solution(String str) {
+
+    int ans = 0;
+    for (char c : str.toCharArray()) {
+      if (c >= 48 && c <= 57) {
+        ans = ans * 10 + (c - 48);
+      }
+    }
+    return ans;
   }
   public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
