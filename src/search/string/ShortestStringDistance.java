@@ -1,8 +1,7 @@
-package search;
+package search.string;
 
 import java.util.Scanner;
-
-public class Main {
+public class ShortestStringDistance {
 
   public static String solution(String str, char t) {
 
