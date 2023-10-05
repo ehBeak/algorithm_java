@@ -1,7 +1,7 @@
-package search;
+package search.string;
 
 import java.util.Scanner;
-public class Main {
+public class ExtractNumber {
 
   public static Integer solution(String str) {
     str = str.replaceAll("[^0-9]", "");
