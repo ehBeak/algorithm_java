@@ -6,34 +6,23 @@ public class Main {
 
   public static String solution(int num, String str) {
 
-    str = str.replaceAll("[#]", "1");
-    str = str.replaceAll("[*]", "0");
     StringBuilder sb = new StringBuilder();
+    str = str.replace('#', '1').replace('*', '0');
+    System.out.println(str);
 
-    int ans;
-
-    while (str.length() != 0) {
+    System.out.println(num);
+    for (int i = 0; i < num; i++) {
       String tmp = str.substring(0, 7);
-      char[] cArray = tmp.toCharArray();
-      ans = 0;
-      int binary = 64;
-      for (char c : cArray) {
-        int digit = Integer.parseInt(c + "");
-        ans += binary * digit;
-        binary = binary / 2;
-      }
-
-      sb.append((char) ans);
+      sb.append((char) Integer.parseInt(tmp, 2));
       str = str.substring(7);
     }
-
     return sb.toString();
   }
 
 
   public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
-    int inputNum = in.next().charAt(0);
+    int inputNum = in.nextInt();
     String input = in.next();
     System.out.println(solution(inputNum, input));
   }
