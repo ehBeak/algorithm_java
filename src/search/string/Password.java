@@ -1,8 +1,8 @@
-package search;
+package search.string;
 
 import java.util.Scanner;
 
-public class Main {
+public class Password {
 
   public static String solution(int num, String str) {
 
@@ -39,3 +39,4 @@ public class Main {
   }
 
 }
+
