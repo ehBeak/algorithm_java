@@ -1,8 +1,8 @@
-package search;
+package search.array;
 
 import java.util.Scanner;
 
-public class Main {
+public class BigNumber {
 
   public static String solution(int[] arr, int n) {
     StringBuilder sb = new StringBuilder().append(arr[0]).append(" ");
@@ -25,4 +25,3 @@ public class Main {
   }
 
 }
-
