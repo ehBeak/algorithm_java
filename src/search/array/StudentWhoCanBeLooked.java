@@ -1,8 +1,8 @@
-package search;
+package search.array;
 
 import java.util.*;
 
-public class Main {
+public class StudentWhoCanBeLooked {
 
   public static int solution(int[] arr, int n) {
     int cnt = 1;
@@ -30,4 +30,3 @@ public class Main {
   }
 
 }
-
