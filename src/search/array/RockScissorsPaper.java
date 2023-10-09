@@ -1,8 +1,8 @@
-package search;
+package search.array;
 
 import java.util.*;
 
-public class Main {
+public class RockScissorsPaper {
 
   public static ArrayList<String> solution(int[] aArr, int[] bArr, int n) {
     ArrayList<String> res = new ArrayList<>();
@@ -44,4 +44,3 @@ public class Main {
   }
 
 }
-
