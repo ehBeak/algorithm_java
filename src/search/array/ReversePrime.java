@@ -1,28 +1,33 @@
-package search;
+package search.array;
 
 import java.util.*;
 
-public class Main {
+public class ReversePrime {
 
   public static List<Integer> solution(String[] strArray, int n) {
 
     int[] reverseNumArray = new int[n];
     List<Integer> ans = new ArrayList<>();
-    boolean flag;
+    boolean flag = true;
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++) {
       reverseNumArray[i] = Integer.parseInt(new StringBuilder(strArray[i]).reverse().toString());
-
+    }
 
     for (int i = 0; i < n; i++) {
       int tmp = reverseNumArray[i];
       flag = true;
-      if (tmp == 1) flag = false;
-
-      for (int j = 2; j*j <= tmp; j++)
-        if (tmp % j == 0) flag = false;
-
-      if (flag) ans.add(tmp);
+      if (tmp == 1) {
+        flag = false;
+      }
+      for (int j = 2; j*j <= tmp; j++) {
+        if (tmp % j == 0) {
+          flag = false;
+        }
+      }
+      if (flag) {
+        ans.add(tmp);
+      }
     }
 
     return ans;
@@ -42,4 +47,3 @@ public class Main {
   }
 
 }
-
