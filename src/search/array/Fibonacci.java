@@ -1,8 +1,8 @@
-package search;
+package search.array;
 
 import java.util.*;
 
-public class Main {
+public class Fibonacci {
 
   public static int[] solution(int n) {
     int[] ans = new int[n];
@@ -24,4 +24,3 @@ public class Main {
     }
   }
 }
-
