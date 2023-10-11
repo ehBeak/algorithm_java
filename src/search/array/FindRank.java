@@ -1,8 +1,8 @@
-package search;
+package search.array;
 
 import java.util.*;
 
-public class Main {
+public class FindRank {
 
   public static int[] solution(int[] arr, int n) {
 
@@ -32,4 +32,3 @@ public class Main {
   }
 
 }
-
