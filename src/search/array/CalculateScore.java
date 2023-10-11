@@ -1,8 +1,8 @@
-package search;
+package search.array;
 
 import java.util.*;
 
-public class Main {
+public class CalculateScore {
 
   public static int solution(int[] arr, int n) {
     int total = 0;
@@ -29,4 +29,3 @@ public class Main {
   }
 
 }
-
