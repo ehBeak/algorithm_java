@@ -1,8 +1,8 @@
-package search;
+package search.array;
 
 import java.util.*;
 
-public class Main {
+public class MaxSum {
 
   public static int solution(int[][] arr, int n) {
     // 대각선
@@ -54,9 +54,7 @@ public class Main {
       }
     }
 
-    System.out.println(solution(arr, n));
+    System.out.println(solution(arr, 5));
   }
 
 }
-
-
