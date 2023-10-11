@@ -8,11 +8,11 @@ public class Main {
 
     int[] res = new int[n];
     for (int i = 0; i < n; i++) {
+      int iScore = 1;
       for (int j = 0; j < n; j++) {
-        if (arr[i] > arr[j]) {
-          res[j]++;
-        }
+        if (arr[i] < arr[j]) iScore++;
       }
+      res[i] = iScore;
     }
     return res;
   }
@@ -26,7 +26,7 @@ public class Main {
     }
 
     for (int i : solution(arr, n)) {
-      System.out.print((i + 1) + " ");
+      System.out.print(i + " ");
 
     }
   }
