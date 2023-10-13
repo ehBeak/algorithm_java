@@ -1,8 +1,8 @@
-package search;
+package search.array;
 
 import java.util.*;
 
-public class Main {
+public class FindMentor {
 
   public static int solution(int[][] arr, int n, int m) {
 
@@ -38,5 +38,3 @@ public class Main {
   }
 
 }
-
-
