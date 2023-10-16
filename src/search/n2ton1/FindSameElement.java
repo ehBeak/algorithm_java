@@ -1,8 +1,8 @@
-package search;
+package search.n2ton1;
 
 import java.util.*;
 
-public class Main {
+public class FindSameElement {
 
   public static ArrayList<Integer> solution(int n, int[] arr1, int m, int[] arr2) {
 
@@ -18,7 +18,7 @@ public class Main {
     int p1 = 0;
     int p2 = 0;
     while (p1 < n && p2 < m) {
-      if(Objects.equals(list1.get(p1), list2.get(p2))){
+      if(list1.get(p1) == list2.get(p2)){
         res.add(list1.get(p1));
         p1++; p2++;
       } else if (list1.get(p1) > list2.get(p2)) {
