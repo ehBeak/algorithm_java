@@ -7,21 +7,16 @@ public class Main {
   public static ArrayList<Integer> solution(int n, int[] arr1, int m, int[] arr2) {
 
     ArrayList<Integer> res = new ArrayList<>();
-    ArrayList<Integer> list1 = new ArrayList<>();
-    ArrayList<Integer> list2 = new ArrayList<>();
-
-    for (int i : arr1) list1.add(i);
-    for (int i : arr2) list2.add(i);
-    Collections.sort(list1);
-    Collections.sort(list2);
+    Arrays.sort(arr1);
+    Arrays.sort(arr2);
 
     int p1 = 0;
     int p2 = 0;
     while (p1 < n && p2 < m) {
-      if(Objects.equals(list1.get(p1), list2.get(p2))){
-        res.add(list1.get(p1));
-        p1++; p2++;
-      } else if (list1.get(p1) > list2.get(p2)) {
+      if(arr1[p1]==arr2[p2]){
+        res.add(arr1[p1++]);
+        p2++;
+      } else if (arr1[p1] > arr2[p2]) {
         p2++;
       } else {
         p1++;
