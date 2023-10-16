@@ -1,8 +1,8 @@
-package search;
+package search.n2ton1;
 
 import java.util.*;
 
-public class Main {
+public class TwoPointersAlgorithm {
 
   public static int[] solution(int n, int[] arr1, int m, int[] arr2) {
     int[] res = new int[n + m];
@@ -60,4 +60,3 @@ public class Main {
   }
 
 }
-
