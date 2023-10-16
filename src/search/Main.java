@@ -5,39 +5,37 @@ import java.util.*;
 public class Main {
 
   public static int solution(int[][] arr, int n) {
+    int res = 0;
+    int max = Integer.MIN_VALUE;
 
-    int[] dx = {1, 0, -1, 0};
-    int[] dy = {0, -1, 0, 1};
 
-    int cnt = 0;
-
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < n; j++) {
-        boolean flag = true;
-        for (int k = 0; k < 4; k++) {
-          int x = i + dx[k];
-          int y = j + dy[k];
-          if (x >= 0 && x < n && y >= 0 && y < n && arr[i][j] <= arr[x][y]) {
-            flag = false;
+    for (int i = 1; i <= n; i++) {
+      int cnt = 0;
+      for (int j = 1; j <= n; j++) {
+        for (int k = 1; k <= 5; k++) {
+          if(arr[i][k]==arr[j][k]) {
+            cnt++;
             break;
           }
         }
-        if (flag) cnt++;
+      }
+      if(cnt > max) {
+        res = i;
+        max = cnt;
       }
     }
-
-    return cnt;
-
+    return res;
   }
 
-  public static void main(String[] args){
+
+
+  public static void main(String[] args) {
 
     Scanner in = new Scanner(System.in);
     int n = in.nextInt();
-
-    int[][] arr = new int[n][n];
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < n; j++) {
+    int[][] arr = new int[n+1][6];
+    for (int i = 1; i <= n; i++) {
+      for (int j = 1; j < 6; j++) {
         arr[i][j] = in.nextInt();
       }
     }
