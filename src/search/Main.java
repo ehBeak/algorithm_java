@@ -4,39 +4,44 @@ import java.util.*;
 
 public class Main {
 
-  public static int solution(int[][] arr, int n, int m) {
+  public static int solution(int[][] arr, int n) {
 
-    int ans = 0;
-    int pi = 0, pj = 0;
-    for (int i = 1; i <= n; i++) {
-      for (int j = 1; j <= n; j++) {
-        int cnt = 0;
-        for (int k = 0; k < m; k++) {
-          for (int s = 0; s < n; s++) {
-            if (arr[k][s] == i) pi = s;
-            if (arr[k][s] == j) pj = s;
+    int[] idx = {-1, 0, 1, 0};
+    int[] jdx = {0, -1, 0, 1};
+
+    int res = 0;
+
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        boolean flag = true;
+        for (int k = 0; k < 4; k++) {
+          int x = i + idx[k];
+          int y = j + jdx[k];
+          if (x < n && x >= 0 && y < n && y >= 0 && arr[i][j] <= arr[x][y]) {
+            flag = false;
+            break;
           }
-          if (pi > pj) cnt++;
         }
-        if (cnt == m) ans++;
+        if (flag) res++;
+
       }
     }
-    return ans;
-  }
-  public static void main(String[] args) {
+    return res;
 
+  }
+  public static void main(String[] args){
     Scanner in = new Scanner(System.in);
     int n = in.nextInt();
-    int m = in.nextInt();
+    int[][] arr = new int[n][n];
 
-    int[][] arr = new int[m][n];
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        arr[i][j] = in.nextInt();
+      }
+    }
 
-    for (int i = 0; i < m; i++)
-      for (int j = 0; j < n; j++) arr[i][j] = in.nextInt();
-
-    System.out.println(solution(arr, n, m));
+    System.out.println(solution(arr, n));
   }
-
 }
 
 
