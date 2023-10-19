@@ -4,20 +4,16 @@ import java.util.*;
 public class Main {
 
   public static int solution(int n) {
-    int res = 0;
-    int lt = 1, sum = 0;
-    for (int rt = 1; rt <= (n / 2 + 1); rt++) {
-      sum += rt;
-      if (sum == n) res++;
-
-      while (sum >= n) {
-        sum -= lt++;
-        if (sum == n) {
-          res++;
-        }
+    int ans = 0, cnt = 1;
+    n--;
+    while (n > 0) {
+      cnt++;
+      n = n - cnt;
+      if (n % cnt == 0) {
+        ans++;
       }
     }
-    return res;
+    return ans;
   }
 
 
