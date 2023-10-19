@@ -3,35 +3,18 @@ package search;
 import java.util.Scanner;
 
 public class Main {
-
-  public static int solution(int[] arr, int n, int m) {
-    int lt = 0, sum = 0, cnt = 0;
-    for (int rt = 0; rt < n; rt++) {
-      sum += arr[rt];
-      if (sum == m) {
-        cnt++;
-      }
-      while (sum >= m) {
-        sum -= arr[lt++];
-        if (sum == m) {
-          cnt++;
-        }
-      }
+  public static String solution(String str) {
+    StringBuilder sb = new StringBuilder();
+    for(int i=0; i<str.length(); i++) {
+      if(str.indexOf(str.charAt(i))==i)
+        sb.append(str.charAt(i));
     }
-
-    return cnt;
+    return sb.toString();
   }
   public static void main(String[] args){
-    Scanner in = new Scanner(System.in);
-    int n = in.nextInt();
-    int m = in.nextInt();
-    int[] arr = new int[n];
-    for (int i = 0; i < n; i++) {
-      arr[i] = in.nextInt();
-    }
-
-    System.out.println(solution(arr, n, m));
-
+    Scanner in=new Scanner(System.in);
+    String input = in.next();
+    System.out.println(solution(input));
     return ;
   }
 }
