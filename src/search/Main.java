@@ -5,38 +5,40 @@ import java.util.Scanner;
 public class Main {
 
   public static int solution(int[][] arr, int n) {
-    int cnt = 0;
-    int[] dx = {1, 0, -1, 0};
-    int[] dy = {0, 1, -0, -1};
+
+    int max = Integer.MIN_VALUE;
+    int res = 0;
 
     for (int i = 0; i < n; i++) {
+      int cnt = 0;
       for (int j = 0; j < n; j++) {
-        boolean flag = true;
-        for (int k = 0; k < 4; k++) {
-          int x = i + dx[k];
-          int y = j + dy[k];
-          if (x >= 0 && y >= 0 && x < n && y < n && arr[i][j] <= arr[x][y]) {
-            flag = false;
+        for (int k = 0; k < 5; k++) {
+          if (arr[i][k] == arr[j][k]) {
+            cnt++;
             break;
           }
         }
-        if(flag) cnt++;
+      }
+      if (max < cnt) {
+        max = cnt;
+        res = i + 1;
       }
     }
-    return cnt;
+
+    return res;
   }
+
   public static void main(String[] args){
     Scanner in=new Scanner(System.in);
     int n = in.nextInt();
-    int[][] arr = new int[n][n];
+    int[][] arr = new int[n][5];
 
     for (int i = 0; i < n; i++) {
-      for (int j = 0; j < n; j++) {
+      for (int j = 0; j < 5; j++) {
         arr[i][j] = in.nextInt();
       }
     }
 
     System.out.println(solution(arr, n));
-    return ;
   }
 }
