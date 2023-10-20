@@ -1,27 +1,21 @@
 package search;
 
-import java.util.*;
+import java.util.Scanner;
+
 public class Main {
 
-  public static int solution(int n) {
-    int ans = 0, cnt = 1;
-    n--;
-    while (n > 0) {
-      cnt++;
-      n = n - cnt;
-      if (n % cnt == 0) {
-        ans++;
-      }
+  public static String solution(String str) {
+    StringBuilder sb = new StringBuilder();
+    for(int i=0; i<str.length(); i++) {
+      if(str.indexOf(str.charAt(i)) == i)
+        sb.append(str.charAt(i));
     }
-    return ans;
+    return sb.toString();
   }
-
-
-  public static void main(String[] args) {
-
-    Scanner in = new Scanner(System.in);
-    int n = in.nextInt();
-    System.out.println(solution(n));
+  public static void main(String[] args){
+    Scanner in=new Scanner(System.in);
+    String input = in.next();
+    System.out.println(solution(input));
+    return ;
   }
-
 }
