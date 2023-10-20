@@ -4,24 +4,22 @@ import java.util.Scanner;
 
 public class Main {
 
-  public static int solution(int[][] arr, int n) {
+  public static int solution(int[][] arr, int n, int m) {
 
-    int max = Integer.MIN_VALUE;
     int res = 0;
 
-    for (int i = 0; i < n; i++) {
-      int cnt = 0;
-      for (int j = 0; j < n; j++) {
-        for (int k = 0; k < 5; k++) {
-          if (arr[i][k] == arr[j][k]) {
-            cnt++;
-            break;
+    for (int i = 1; i <= n; i++) {
+      for (int j = 1; j <= n; j++) {
+        int cnt = 0;
+        for (int k = 0; k < m; k++) {
+          int pi = 0, pj = 0;
+          for (int s = 0; s < n; s++) {
+            if(arr[k][s] == i) pi = s;
+            if(arr[k][s] == j) pj = s;
           }
+          if (pi < pj) cnt++;
         }
-      }
-      if (max < cnt) {
-        max = cnt;
-        res = i + 1;
+        if (cnt == m) res++;
       }
     }
 
@@ -31,14 +29,15 @@ public class Main {
   public static void main(String[] args){
     Scanner in=new Scanner(System.in);
     int n = in.nextInt();
-    int[][] arr = new int[n][5];
+    int m = in.nextInt();
+    int[][] arr = new int[m][n];
 
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < 5; j++) {
+    for (int i = 0; i < m; i++) {
+      for (int j = 0; j < n; j++) {
         arr[i][j] = in.nextInt();
       }
     }
 
-    System.out.println(solution(arr, n));
+    System.out.println(solution(arr, n, m));
   }
 }
