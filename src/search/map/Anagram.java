@@ -10,21 +10,16 @@ public class Anagram {
     private static final String NO = "NO";
 
     public static String solution(String str1, String str2) {
-        Map<Character, Integer> map1 = new HashMap<>();
-        Map<Character, Integer> map2 = new HashMap<>();
-        for (int i = 0; i < str1.length() || i < str2.length(); i++) {
-            map1.put(str1.charAt(i), map1.getOrDefault(str1.charAt(i), 0) + 1);
-            map2.put(str2.charAt(i), map2.getOrDefault(str2.charAt(i), 0) + 1);
+        Map<Character, Integer> map = new HashMap<>();
+        for (char key : str1.toCharArray()) {
+            map.put(key, map.getOrDefault(key, 0) + 1);
         }
 
-        if (!(map1.keySet().containsAll(map2.keySet()) && map2.keySet().containsAll(map1.keySet()))) {
-            return NO;
-        }
-
-        for (Character key : map1.keySet()) {
-            if (map1.get(key) != map2.get(key)) {
+        for (char key : str2.toCharArray()) {
+            if (map.get(key) == 0 || !map.containsKey(key)) {
                 return NO;
             }
+            map.put(key, map.get(key) - 1);
         }
 
         return YES;
