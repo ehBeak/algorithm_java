@@ -3,26 +3,27 @@ package search.map;
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Revenue {
 
-    public static int[] solution(int days, int[] arr, int cDays) {
-        int[] answer = new int[days - cDays + 1];
+    public static List<Integer> solution(int days, int[] arr, int cDays) {
+        List<Integer> answer = new ArrayList<>();
         Map<Integer, Integer> map = new HashMap<>();
 
-        int k = 0;
-        for (int i = 0; i < cDays; i++) {
+        for (int i = 0; i < cDays - 1; i++) {
             map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
         }
-        answer[k++] = map.size();
-
-        for (int i = cDays; i < days; i++) {
-            map.put(arr[i - cDays], map.get(arr[i - cDays]) - 1);
-            if (map.get(arr[i - cDays]) == 0) {
-                map.remove(arr[i - cDays]);
+        int lt = 0;
+        for (int rt = cDays - 1; rt < days; rt++, lt++) {
+            map.put(arr[rt], map.getOrDefault(arr[rt], 0) + 1);
+            answer.add(map.size());
+            map.put(arr[lt], map.get(arr[lt]) - 1);
+            if (map.get(arr[lt]) == 0) {
+                map.remove(arr[lt]);
             }
-            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
-            answer[k++] = map.size();
+
         }
 
         return answer;
@@ -36,7 +37,7 @@ public class Revenue {
         for (int i = 0; i < days; i++) {
             arr[i] = in.nextInt();
         }
-        for (int answer : solution(days, arr, cDays)) {
+        for (Integer answer : solution(days, arr, cDays)) {
             System.out.print(answer + " ");
         }
     }
