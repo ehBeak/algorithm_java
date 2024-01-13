@@ -1,33 +1,42 @@
 package search;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
 
-  private static final String YES = "YES";
-  private static final String NO = "NO";
 
-  public static String solution(String str1, String str2) {
-    Map<Character, Integer> map = new HashMap<>();
-    for (Character key : str1.toCharArray()) {
-      map.put(key, map.getOrDefault(key, 0) + 1);
-    }
+  public static int solution(int[][] arr, int n) {
+    int max = 0;
+    int president = 0;
 
-    for (Character key : str2.toCharArray()) {
-      if (!map.containsKey(key) || map.get(key) == 0) {
-        return NO;
+    for (int i = 0; i < n; i++) {
+      int prev = 0;
+      for (int j = 0; j < n; j++) {
+        for (int k = 0; k < 5; k++) {
+          if (arr[i][k] == arr[j][k]) {
+            prev++;
+            break;
+          }
+        }
+        if (prev > max) {
+          max = prev;
+          president = i;
+        }
       }
-      map.put(key, map.get(key) - 1);
     }
-    return YES;
+    return president + 1;
   }
 
   public static void main(String[] args){
     Scanner in = new Scanner(System.in);
-    String str1 = in.next();
-    String str2 = in.next();
-    System.out.println(solution(str1, str2));
+    int n = in.nextInt();
+    int[][] table = new int[n][5];
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < 5; j++) {
+        table[i][j] = in.nextInt();
+      }
+    }
+
+    System.out.println(solution(table, n));
   }
 }
