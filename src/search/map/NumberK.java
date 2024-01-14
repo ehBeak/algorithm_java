@@ -2,16 +2,13 @@ package search.map;
 
 import java.util.Scanner;
 import java.util.Collections;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.HashSet;
+import java.util.TreeSet;
 
 public class NumberK {
 
     public static int solution(int[] arr, int k, int n) {
 
-        Set<Integer> set = new HashSet<>();
+        TreeSet<Integer> set = new TreeSet<>(Collections.reverseOrder());
         for (int i = 0; i < n; i++) {
             for (int j = i+1; j < n; j++) {
                 for (int l = j+1; l < n; l++) {
@@ -20,14 +17,14 @@ public class NumberK {
             }
         }
 
-        if (set.size() < k) {
-            return -1;
+        int flag = 0;
+        for (Integer i : set) {
+            if (flag++ == k-1) {
+                return i;
+            }
         }
 
-        List<Integer> list = new ArrayList<>(set);
-        Collections.sort(list, Collections.reverseOrder());
-
-        return list.get(k-1);
+        return -1;
     }
 
     public static void main(String[] args) {
