@@ -13,12 +13,11 @@ public class Bracket {
 
     public static String solution(String input) {
         Stack<Character> stack = new Stack<>();
-        char[] cArray = input.toCharArray();
-        for (int i = 0; i < input.length(); i++) {
-            if (cArray[i] == OPEN) {
+        for (char c : input.toCharArray()) {
+            if (c == OPEN) {
                 stack.push(OPEN);
             }
-            if (cArray[i] == CLOSE) {
+            if (c == CLOSE) {
                 if (stack.empty()) {
                     return NO;
                 }
