@@ -8,26 +8,27 @@ public class DeleteCharacter {
     public static Character OPEN = '(';
     public static Character CLOSE = ')';
 
-    public static String solution(String input) {
+    public static Stack solution(String input) {
         Stack<Character> stack = new Stack<>();
-        StringBuffer sb = new StringBuffer();
         for (char c : input.toCharArray()) {
-            if (c != CLOSE && c != OPEN && stack.empty()) {
-                sb.append(c);
-            }
-            if (c == OPEN) {
+            if (c != CLOSE) {
                 stack.push(c);
-            }
-            if (c == CLOSE && !stack.empty()) {
+            } else {
+                while (stack.peek() != OPEN) {
+                    stack.pop();
+                }
                 stack.pop();
             }
         }
-        return sb.toString();
+        return stack;
     }
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         String input = in.next();
-        System.out.println(solution(input));
+        Stack answer = solution(input);
+        for (int i = 0; i < answer.size(); i++) {
+            System.out.print(answer.get(i));
+        }
     }
 }
