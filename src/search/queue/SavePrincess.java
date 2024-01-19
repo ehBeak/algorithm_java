@@ -1,33 +1,25 @@
 package search.queue;
 
 import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class SavePrincess {
 
     public static int solution(int n, int k) {
-        List<Integer> list = new ArrayList<>();
+        Queue<Integer> queue = new LinkedList<>();
         for (int i = 1; i <= n; i++) {
-            list.add(i);
+            queue.offer(i);
         }
 
-        int index = 0;
-        int number = 1;
-        while (list.size() != 1) {
-            if (number == k) {
-                list.remove(index--);
-                number = 1;
-            } else {
-                number++;
+        while (queue.size() != 1) {
+            for (int i = 1; i < k; i++) {
+                queue.offer(queue.poll());
             }
-            index++;
-            if (index >= list.size()) {
-                index = 0;
-            }
+            queue.poll();
         }
 
-        return list.get(0);
+        return queue.poll();
     }
 
     public static void main(String[] args) {
