@@ -6,25 +6,30 @@ import java.util.HashMap;
 
 public class Main {
 
-  public static final String YES = "YES";
-  public static final String NO = "NO";
-
-  public static String solution(String s, String t) {
-    Map<Character, Integer> map = new HashMap<>();
-    for (Character c : s.toCharArray()) {
-      map.put(c, map.getOrDefault(c, 0) + 1);
-    }
-
+  public static int solution(String s, String t) {
+    Map<Character, Integer> tMap = new HashMap<>();
+    Map<Character, Integer> sMap = new HashMap<>();
+    int answer = 0;
     for (Character c : t.toCharArray()) {
-      if (!map.containsKey(c)) {
-        return NO;
+      tMap.put(c, tMap.getOrDefault(c, 0) + 1);
+    }
+
+    for (int i = 0; i < t.length() - 1; i++) {
+      sMap.put(s.charAt(i), sMap.getOrDefault(s.charAt(i), 0) + 1);
+    }
+
+    for (int i = t.length() - 1; i < s.length(); i++) {
+      sMap.put(s.charAt(i), sMap.getOrDefault(s.charAt(i), 0) + 1);
+      if (tMap.equals(sMap)) {
+        answer++;
       }
-      map.put(c, map.get(c) - 1);
-      if (map.get(c) == 0) {
-        map.remove(c);
+      char c = s.charAt(i - t.length() + 1);
+      sMap.put(c, sMap.get(c) - 1);
+      if (sMap.get(c) == 0) {
+        sMap.remove(c);
       }
     }
-    return YES;
+    return answer;
   }
 
   public static void main(String[] args){
