@@ -1,41 +1,54 @@
 package search;
 
 import java.util.Scanner;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class Main {
+  class Person {
+    public Integer id;
+    public Integer priority;
 
-  public static int solution(String s, String t) {
-    Map<Character, Integer> tMap = new HashMap<>();
-    Map<Character, Integer> sMap = new HashMap<>();
-    int answer = 0;
-    for (Character c : t.toCharArray()) {
-      tMap.put(c, tMap.getOrDefault(c, 0) + 1);
+    public Person(Integer id, Integer priority) {
+      this.id = id;
+      this.priority = priority;
+    }
+  }
+
+  public int solution(int[] arr, int n, int m) {
+    int number = 0;
+    Queue<Person> queue = new LinkedList<>();
+    for (int i = 0; i < n; i++) {
+      queue.offer(new Person(i, arr[i]));
     }
 
-    for (int i = 0; i < t.length() - 1; i++) {
-      sMap.put(s.charAt(i), sMap.getOrDefault(s.charAt(i), 0) + 1);
-    }
-
-    for (int i = t.length() - 1; i < s.length(); i++) {
-      sMap.put(s.charAt(i), sMap.getOrDefault(s.charAt(i), 0) + 1);
-      if (tMap.equals(sMap)) {
-        answer++;
+    while (true) {
+      Person person = queue.poll();
+      boolean now = true;
+      for (Person p : queue) {
+        if (person.priority < p.priority) {
+          now = false;
+        }
       }
-      char c = s.charAt(i - t.length() + 1);
-      sMap.put(c, sMap.get(c) - 1);
-      if (sMap.get(c) == 0) {
-        sMap.remove(c);
+      if (now) {
+        number++;
+        if (person.id == m) {
+          return number;
+        }
+      } else {
+        queue.offer(person);
       }
     }
-    return answer;
   }
 
   public static void main(String[] args){
     Scanner in = new Scanner(System.in);
-    String s = in.next();
-    String t = in.next();
-    System.out.println(solution(s, t));
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int[] arr = new int[n];
+    for (int i = 0; i < n; i++) {
+      arr[i] = in.nextInt();
+    }
+    System.out.println(new Main().solution(arr, n, m));
   }
 }
