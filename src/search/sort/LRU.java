@@ -4,26 +4,24 @@ import java.util.Scanner;
 
 public class LRU {
 
-    public static int[] solution(int[] arr, int s, int n) {
+    public static int[] solution(int[] arr, int s) {
         int[] m = new int[s];
 
         for (Integer input : arr) {
-            boolean hit = false;
-            int hit_idx = 0;
+            int hit_idx = -1;
             for (int j = 0; j < s; j++) {
                 if (m[j] == input) {
-                    hit = true;
                     hit_idx = j;
                 }
             }
 
-            if (hit) { // 존재한다면
-                for (int k = hit_idx - 1; k >= 0; k--) {
-                    m[k + 1] = m[k];
+            if (hit_idx != -1) { // 존재한다면
+                for (int k = hit_idx; k > 0; k--) {
+                    m[k] = m[k - 1];
                 }
             } else {
-                for (int k = s - 2; k >= 0; k--) {
-                    m[k + 1] = m[k];
+                for (int k = s - 1; k > 0; k--) {
+                    m[k] = m[k - 1];
                 }
             }
             m[0] = input;
@@ -38,7 +36,7 @@ public class LRU {
         for (int i = 0; i < n; i++) {
             arr[i] = in.nextInt();
         }
-        for (int i : solution(arr, s, n)) {
+        for (int i : solution(arr, s)) {
             System.out.print(i + " ");
         }
     }
