@@ -1,6 +1,7 @@
 package algorithm.serach;
 
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class CheckDuplicated {
 
@@ -8,19 +9,7 @@ public class CheckDuplicated {
     private static final String UNIQUE = "U";
 
     public static String solution(int[] arr, int n) {
-        for (int i = 1; i < n; i++) {
-            int key = arr[i];
-            int j = i;
-            for (; j >= 0; j--) {
-                if (key < arr[j - 1]) {
-                    arr[j] = arr[j - 1];
-                } else {
-                    break;
-                }
-            }
-            arr[j] = key;
-        }
-
+        Arrays.sort(arr);
         for (int i = 1; i < n; i++) {
             if (arr[i] == arr[i - 1]) {
                 return DUPLICATED;
