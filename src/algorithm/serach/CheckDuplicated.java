@@ -1,7 +1,5 @@
 package algorithm.serach;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class CheckDuplicated {
@@ -9,14 +7,26 @@ public class CheckDuplicated {
     private static final String DUPLICATED = "D";
     private static final String UNIQUE = "U";
 
-    public static String solution(int[] arr) {
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i : arr) {
-            map.put(i, map.getOrDefault(i, 0) + 1);
-            if (map.get(i) > 1) {
+    public static String solution(int[] arr, int n) {
+        for (int i = 1; i < n; i++) {
+            int key = arr[i];
+            int j = i;
+            for (; j >= 0; j--) {
+                if (key < arr[j - 1]) {
+                    arr[j] = arr[j - 1];
+                } else {
+                    break;
+                }
+            }
+            arr[j] = key;
+        }
+
+        for (int i = 1; i < n; i++) {
+            if (arr[i] == arr[i - 1]) {
                 return DUPLICATED;
             }
         }
+
         return UNIQUE;
     }
 
@@ -27,6 +37,6 @@ public class CheckDuplicated {
         for (int i = 0; i < n; i++) {
             arr[i] = in.nextInt();
         }
-        System.out.println(solution(arr));
+        System.out.println(solution(arr, n));
     }
 }
