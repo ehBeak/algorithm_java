@@ -18,13 +18,10 @@ public class SortCoordinate {
 
         @Override
         public int compareTo(Pair o) {
-            if (this.x < o.x) {
-                return -1;
+            if (this.x == o.x) {
+                return this.y - o.y;
             }
-            if (this.x == o.x && this.y < o.y) {
-                return -1;
-            }
-            return 1;
+            return this.x - o.x;
         }
     }
 
