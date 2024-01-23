@@ -4,34 +4,32 @@ import java.util.Scanner;
 
 public class Main {
 
-  public static int solution(int[] arr, int n, int m) {
-    int sum = 0;
-    int number = 0;
-    int lt = 0;
-    for (int rt = 0; rt < n; rt++) {
-      sum += arr[rt];
-      if (sum == m) {
-        number++;
-      }
-      while (sum >= m) {
-        sum -= arr[lt++];
-        if (sum == m) {
-          number++;
+  public static int[] solution(int[] arr, int n) {
+    for (int i = 1; i < n; i++) {
+      int key = arr[i];
+      int j = i;
+      for (; j > 0; j--) {
+        if (key < arr[j - 1]) {
+          arr[j] = arr[j - 1];
+        } else {
+          break;
         }
       }
+      arr[j] = key;
     }
 
-    return number;
+    return arr;
   }
 
   public static void main(String[] args){
     Scanner in = new Scanner(System.in);
     int n = in.nextInt();
-    int m = in.nextInt();
     int[] arr = new int[n];
     for (int i = 0; i < n; i++) {
       arr[i] = in.nextInt();
     }
-    System.out.println(solution(arr, n, m));
+    for (int i : solution(arr, n)) {
+      System.out.print(i + " ");
+    }
   }
 }
