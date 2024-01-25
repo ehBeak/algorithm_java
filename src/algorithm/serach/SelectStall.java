@@ -9,7 +9,7 @@ public class SelectStall {
         int stall = arr[0];
         int number = 1;
         for (int i = 0; i < n; i++) {
-            if (arr[i] - stall > maxDistance) {
+            if (arr[i] - stall >= maxDistance) {
                 number++;
                 stall = arr[i];
             }
@@ -20,7 +20,7 @@ public class SelectStall {
     public static int solution(int[] arr, int n, int horseCnt) {
         int maxDistance = 0;
         Arrays.sort(arr);
-        int lt = arr[0];
+        int lt = 1;
         int rt = arr[n - 1] - arr[0];
         while (lt <= rt) {
             int mid = (lt + rt) / 2;
