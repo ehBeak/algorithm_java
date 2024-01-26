@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Factorial {
 
     public static int DFS(int n) {
-        if (n == 0) {
+        if (n == 1) {
             return 1;
         } else {
             return n * DFS(n - 1);
