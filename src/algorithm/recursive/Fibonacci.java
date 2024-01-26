@@ -7,6 +7,9 @@ public class Fibonacci {
     static int[] arr;
 
     public static int DFS(int n) {
+        if (arr[n] > 0) {
+            return arr[n];
+        }
         if (n == 1 || n==2) {
             return arr[n] = 1;
         } else {
