@@ -15,18 +15,23 @@ public class Dfs {
     Node root;
 
     public static void DFS(Node node) {
-        if (node == null) { //말단노드
+        if (node == null) {
             return;
         }
         System.out.print(node.data + " ");
-        DFS(node.lt); // 왼쪽 먼저 들리고
-        DFS(node.rt); // 오른쪽 들리기
-
+        DFS(node.lt);
+        DFS(node.rt);
     }
 
     public static void main(String[] args) {
-
+        Dfs tree = new Dfs();
+        tree.root = new Node(1);
+        tree.root.lt = new Node(2);
+        tree.root.rt = new Node(3);
+        tree.root.lt.lt = new Node(4);
+        tree.root.lt.rt = new Node(5);
+        tree.root.rt.lt = new Node(6);
+        tree.root.rt.rt = new Node(7);
+        DFS(tree.root);
     }
-
-
 }
