@@ -10,26 +10,24 @@ public class ShortestPath {
 
     static List<List<Integer>> graph;
     static int n;
-    static int[] answer;
+    static int[] distance;
+    static boolean[] isVisit;
 
 
-    public static void bfs(int start, int end) {
+    public static void bfs(int v) {
+        isVisit[1] = true;
+        distance[1] = 0;
         Queue<Integer> queue = new LinkedList<>();
-        queue.offer(start);
-        int level = 0;
+        queue.offer(v);
         while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                int current = queue.poll();
-                if(current == end) {
-                    answer[end] = level;
-                    return;
-                }
-                for (int path : graph.get(current)) {
-                    queue.offer(path);
+            int cur = queue.poll();
+            for (int nv : graph.get(cur)) {
+                if (!isVisit[nv]) {
+                    isVisit[nv] = true;
+                    queue.offer(nv);
+                    distance[nv] = distance[cur] + 1;
                 }
             }
-            level++;
         }
     }
 
@@ -37,7 +35,8 @@ public class ShortestPath {
         Scanner in = new Scanner(System.in);
         n = in.nextInt();
         int m = in.nextInt();
-        answer = new int[n + 1];
+        distance = new int[n + 1];
+        isVisit = new boolean[n + 1];
         graph = new ArrayList<>();
         for (int i = 0; i <= n; i++) {
             graph.add(new ArrayList<>());
@@ -47,9 +46,9 @@ public class ShortestPath {
             int end = in.nextInt();
             graph.get(start).add(end);
         }
+        bfs(1);
         for (int i = 2; i <= n; i++) {
-            bfs(1, i);
-            System.out.println(i + " : " + answer[i]);
+            System.out.println(i + " : " + distance[i]);
         }
     }
 }
