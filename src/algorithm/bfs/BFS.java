@@ -21,7 +21,7 @@ public class BFS {
         queue.offer(root);
         int level = 0;
         while (!queue.isEmpty()) {
-            System.out.print(level++ + " : ");
+            System.out.print(level + " : ");
             int size = queue.size();
             for (int i = 0; i < size; i++) {
                 Node curNode = queue.poll();
@@ -34,8 +34,8 @@ public class BFS {
                 }
             }
             System.out.println();
+            level++;
         }
-
     }
 
     public static void main(String[] args) {
