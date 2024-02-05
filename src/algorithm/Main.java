@@ -1,55 +1,42 @@
 package algorithm;
 
 import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Queue;
-import java.util.LinkedList;
 
 public class Main {
 
-  static List<List<Integer>> graph;
-  static int[] distance;
-  static boolean[] visit;
+  static int[] arr;
+  static int n;
+  static int total = 0;
+  static String answer = "NO";
+  static boolean flag = false;
 
-  public static void solution(int v) {
-    Queue<Integer> queue = new LinkedList<>();
-    queue.offer(v);
-    while (!queue.isEmpty()) {
-      int cv = queue.poll();
-      for (int nv : graph.get(cv)) {
-        if (!visit[nv]) {
-          visit[nv] = true;
-          queue.offer(nv);
-          distance[nv] = distance[cv] + 1;
-        }
+  public static void dfs(int idx, int sum) {
+    if (flag) {
+      return;
+    }
+    if (total / 2 < sum) {
+      return;
+    }
+    if (idx == n) {
+      if ((total - sum) == sum) {
+        answer = "YES";
+        flag = true;
       }
+    } else {
+      dfs(idx + 1, sum + arr[idx]);
+      dfs(idx + 1, sum);
     }
   }
 
   public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
-    int n = in.nextInt();
-    int m = in.nextInt();
-    graph = new ArrayList<>();
-    distance = new int[n + 1];
-    visit = new boolean[n + 1];
-    for (int i = 0; i <= n; i++) {
-      graph.add(new ArrayList<>());
+    n = in.nextInt();
+    arr = new int[n];
+    for (int i = 0; i < n; i++) {
+      arr[i] = in.nextInt();
+      total += arr[i];
     }
-
-    for (int i = 0; i < m; i++) {
-      int start = in.nextInt();
-      int end = in.nextInt();
-      graph.get(start).add(end);
-    }
-
-    distance[1] = 0;
-    visit[1] = true;
-    solution(1);
-
-    for (int i = 2; i < n; i++) {
-      System.out.println(i + " : " + distance[i]);
-    }
+    dfs(0, 0);
+    System.out.println(answer);
   }
 }
