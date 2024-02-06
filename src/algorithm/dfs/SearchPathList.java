@@ -34,9 +34,10 @@ public class SearchPathList {
         Scanner in = new Scanner(System.in);
         n = in.nextInt();
         int m = in.nextInt();
+
         graph = new ArrayList<>();
         isVisit = new boolean[n + 1];
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) { // 어차피 5는 포함되지 않기 때문에 상관 없음 (목적지인 5는 출발지가 없으니까)
             graph.add(new ArrayList<>());
         }
 
