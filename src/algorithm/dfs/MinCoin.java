@@ -13,10 +13,13 @@ public class MinCoin {
         if (sum > price) {
             return;
         }
+        if (level >= answer) {
+            return;
+        }
         if (sum == price) {
             answer = Math.min(answer, level);
         } else {
-            for (int i = 0; i < n; i++) {
+            for (int i = n-1; i >= 0; i--) {
                 solution(level + 1, sum + coins[i]);
             }
         }
