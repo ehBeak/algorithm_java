@@ -14,7 +14,6 @@ public class SearchPath {
             answer++;
         } else {
             for (int i=1; i <= n; i++) {
-
                 if (!visit[i] && graph[v][i] == 1) {
                     visit[i] = true;
                     solution(i);
@@ -22,7 +21,6 @@ public class SearchPath {
                 }
             }
         }
-
     }
 
 
