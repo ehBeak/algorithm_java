@@ -5,19 +5,20 @@ import java.util.Arrays;
 
 public class BinarySearch {
 
-    public static int solution(int[] arr, int n, int m) {
+    public static int solution(int[] arr, int n, int key) {
         Arrays.sort(arr);
-        int lt = 0;
+        int lt=0;
         int rt = n - 1;
-
         while (lt <= rt) {
             int mid = (lt + rt) / 2;
-            if (arr[mid] > m) {
-                rt = mid - 1;
-            } else if (arr[mid] < m) {
-                lt = mid + 1;
-            } else {
+            if (key == arr[mid]) {
                 return mid + 1;
+            }
+            if (key > arr[mid]) {
+                lt = mid + 1;
+            }
+            if (key < arr[mid]) {
+                rt = mid - 1;
             }
         }
         return -1;
