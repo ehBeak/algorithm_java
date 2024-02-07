@@ -12,8 +12,8 @@ public class FindPermutation {
 
     public static void solution(int level) {
         if (level == m) {
-            for (int i = 0; i < m; i++) {
-                System.out.print(pick[i] + " ");
+            for (int i : pick) {
+                System.out.print(i + " ");
             }
             System.out.println();
             return;
