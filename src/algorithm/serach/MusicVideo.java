@@ -5,45 +5,45 @@ import java.util.Arrays;
 
 public class MusicVideo {
 
-    public static int count(int[] arr, int n, int capacity) {
-        int size = 0;
-        int cnt = 1;
-        for (int min : arr) {
-            if (min + size > capacity) {
-                size = min;
-                cnt++;
+    public static int count(int capacity, int[] music, int n) {
+        int count = 1;
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            if (sum + music[i] > capacity) {
+                sum = music[i];
+                count++;
             } else {
-                size += min;
+                sum += music[i];
             }
         }
-        return cnt;
+        return count;
     }
 
-    public static int solution(int[] arr, int n, int m) {
-        int lt = Arrays.stream(arr).max().getAsInt();
-        int rt = Arrays.stream(arr).sum();
-
-        int answer = rt;
+    public static int solution(int[] music, int n, int m) {
+        int lt = music[n - 1];
+        int rt = Arrays.stream(music).sum();
+        int capacity = Integer.MAX_VALUE;
         while (lt <= rt) {
             int mid = (lt + rt) / 2;
-            if (count(arr, n, mid) <= m) {
-                answer = mid;
-                rt = mid - 1;
-            } else {
+            if (count(mid, music, n) > m) { // 용량을 더 늘려야함
                 lt = mid + 1;
+            }else { // 용량을 더 줄여도 된다.
+                capacity = mid;
+                rt = mid - 1;
             }
         }
-        return answer;
+        return capacity;
     }
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
         int m = in.nextInt();
-        int[] arr = new int[n];
+        int[] min = new int[n];
+        Arrays.sort(min);
         for (int i = 0; i < n; i++) {
-            arr[i] = in.nextInt();
+            min[i] = in.nextInt();
         }
-        System.out.println(solution(arr, n, m));
+        System.out.println(solution(min, n, m));
     }
 }
