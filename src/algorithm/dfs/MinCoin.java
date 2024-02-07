@@ -10,18 +10,18 @@ public class MinCoin {
     static int n;
 
     public static void solution(int level, int sum) {
+        if (answer <= level) {
+            return;
+        }
         if (sum > price) {
             return;
         }
-        if (level >= answer) {
+        if (sum == price) {
+            answer = Math.min(level, answer);
             return;
         }
-        if (sum == price) {
-            answer = Math.min(answer, level);
-        } else {
-            for (int i = n-1; i >= 0; i--) {
-                solution(level + 1, sum + coins[i]);
-            }
+        for (int i = n - 1; i >= 0; i--) {
+            solution(level + 1, sum + coins[i]);
         }
     }
 
