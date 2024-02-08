@@ -1,42 +1,54 @@
 package algorithm;
 
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class Main {
 
-  static int[] arr;
   static int n;
-  static int total = 0;
-  static String answer = "NO";
-  static boolean flag = false;
+  static int m;
+  static int[] music;
 
-  public static void dfs(int idx, int sum) {
-    if (flag) {
-      return;
-    }
-    if (total / 2 < sum) {
-      return;
-    }
-    if (idx == n) {
-      if ((total - sum) == sum) {
-        answer = "YES";
-        flag = true;
+  public static int count(int capacity) {
+    int sum = 0;
+    int count = 1;
+    for (int i = 0; i < n; i++) {
+      if (sum + music[i] > capacity) {
+        count++;
+        sum = music[i];
+      } else {
+        sum += music[i];
       }
-    } else {
-      dfs(idx + 1, sum + arr[idx]);
-      dfs(idx + 1, sum);
     }
+    return count;
   }
+
+  public static int solution() {
+    int lt = music[n - 1];
+    int rt = Arrays.stream(music).sum();
+    int answer = Integer.MAX_VALUE;
+    while (lt <= rt) {
+      int mid = (lt + rt) / 2;
+      if (count(mid) > m) {
+        lt = mid + 1;
+      } else { // 개수가 같거나 더 적으면 용량 늘려도 된다.
+        answer = mid;
+        rt = mid - 1;
+      }
+    }
+    return answer;
+  }
+
 
   public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
     n = in.nextInt();
-    arr = new int[n];
+    m = in.nextInt();
+    music = new int[n];
     for (int i = 0; i < n; i++) {
-      arr[i] = in.nextInt();
-      total += arr[i];
+      music[i] = in.nextInt();
     }
-    dfs(0, 0);
-    System.out.println(answer);
+    Arrays.sort(music);
+    System.out.println(solution());
   }
 }

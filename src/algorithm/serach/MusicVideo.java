@@ -20,7 +20,8 @@ public class MusicVideo {
     }
 
     public static int solution(int[] music, int n, int m) {
-        int lt = music[n - 1];
+        int lt = Arrays.stream(music).max().getAsInt();
+        System.out.println(lt);
         int rt = Arrays.stream(music).sum();
         int capacity = Integer.MAX_VALUE;
         while (lt <= rt) {
@@ -40,7 +41,6 @@ public class MusicVideo {
         int n = in.nextInt();
         int m = in.nextInt();
         int[] min = new int[n];
-        Arrays.sort(min);
         for (int i = 0; i < n; i++) {
             min[i] = in.nextInt();
         }
