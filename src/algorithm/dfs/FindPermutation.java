@@ -6,7 +6,9 @@ public class FindPermutation {
 
     static int n;
     static int m;
+    static int[] arr;
     static int[] pick;
+    static boolean[] visit;
 
     public static void solution(int level) {
         if (level == m) {
@@ -16,9 +18,13 @@ public class FindPermutation {
             System.out.println();
             return;
         }
-        for (int i = 1; i <= n; i++) {
-            pick[level] = i;
-            solution(level + 1);
+        for (int i = 0; i < n; i++) {
+            if (!visit[i]) {
+                visit[i] = true;
+                pick[level] = arr[i];
+                solution(level + 1);
+                visit[i] = false;
+            }
         }
     }
 
@@ -27,6 +33,11 @@ public class FindPermutation {
         n = in.nextInt();
         m = in.nextInt();
         pick = new int[m];
+        arr = new int[n];
+        visit = new boolean[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = in.nextInt();
+        }
         solution(0);
     }
 }
