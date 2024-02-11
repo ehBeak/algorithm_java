@@ -4,34 +4,34 @@ import java.util.Scanner;
 
 public class PascalsTriangle {
 
-    static int n;
-    static int f;
-    static boolean flag;
-    static int[][] com;
+    static int n, f;
     static int[] combination;
-    static boolean[] visit;
     static int[] permutation;
+    static boolean[] visit;
+    static int[][] memo;
+    static boolean flag = false;
 
-    public static int C(int n, int r) {
-        if (n == r || r == 0) {
+    public static int combination(int n, int r) {
+        if (r == 0 || n == r) {
             return 1;
         }
-        if (com[n][r] != 0) {
-            return com[n][r];
+        if (memo[n][r] != 0) {
+            return memo[n][r];
         }
-        return com[n][r] = C(n - 1, r - 1) + C(n - 1, r);
+        return memo[n][r] = combination(n - 1, r - 1) + combination(n - 1, r);
     }
 
-    public static void solution(int level, int sum) {
+    public static void dfs(int level, int sum) {
         if (flag) {
             return;
         }
         if (level == n) {
             if (sum == f) {
                 for (int i : permutation) {
-                    System.out.print(i+ " ");
-                    flag = true;
+                    System.out.print(i + " ");
                 }
+                System.out.println();
+                flag = true;
             }
             return;
         }
@@ -39,23 +39,24 @@ public class PascalsTriangle {
             if (!visit[i]) {
                 visit[i] = true;
                 permutation[level] = i;
-                solution(level + 1, sum + (permutation[level] * combination[level]));
+                dfs(level + 1, sum + (permutation[level] * combination[level]));
                 visit[i] = false;
             }
         }
+
     }
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         n = in.nextInt();
         f = in.nextInt();
-        com = new int[n + 1][n + 1];
         combination = new int[n];
-        visit = new boolean[n + 1];
         permutation = new int[n];
+        visit = new boolean[n + 1];
+        memo = new int[n + 1][n + 1];
         for (int i = 0; i < n; i++) {
-            combination[i] = C(n - 1, i);
+            combination[i] = combination(n - 1, i);
         }
-        solution(0, 0);
+        dfs(0, 0);
     }
 }
