@@ -14,11 +14,11 @@ public class FindCombination {
                 System.out.print(i + " ");
             }
             System.out.println();
-        } else {
-            for (int i = s; i <= n; i++) {
-                pick[level] = i;
-                solution(level + 1, i + 1);
-            }
+            return;
+        }
+        for (int i = s; i <= n; i++) {
+            pick[level] = i;
+            solution(level + 1, i + 1);
         }
     }
 
